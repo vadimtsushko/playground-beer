@@ -1,17 +1,13 @@
-var express = require('express'),
-    app = express();
+var express = require('express');
+var serveStatic = require('serve-static');
+var open = require('open');
 
-app.use('/resources', express.static(__dirname + '/resources'));
-app.use('/node_modules', express.static(__dirname + '/node_modules'));
-
-app.use("/main", function(req, res){  
-  res.sendFile(__dirname+"/main.html");
-});
-
-app.use("/", function(req, res){
-  res.sendFile(__dirname+"/index.html");
-});
+var app = express();
+app.use(express.static(__dirname));
 
 app.listen(8000, function(){
   console.log('listening on port 8000');
+
+  open('http://localhost:8000');
+
 });
